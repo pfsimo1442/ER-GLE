@@ -2,11 +2,11 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-import Nukki as nk
+import BackGroundRemove as br
 
 
 
-nkColor = (255, 0, 255)
+brColor = (255, 0, 255)
 
 cpSize = (320, 320)
 cpSize_3 = (320, 320, 3) 
@@ -19,8 +19,8 @@ while True:
     if not ret:
         break
 
-    RGB_frame = cv2.resize(RGB_frame, cpSize)
-    output_image = nk.Nukki(RGB_frame, nkColor)
+    frame = cv2.resize(frame, cpSize)
+    output_image = br.BackGroundRemove(frame, brColor)
     
     cv2.imshow('Image Binary Mask Crop Test', output_image)
 
