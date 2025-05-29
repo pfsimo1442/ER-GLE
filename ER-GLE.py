@@ -2,27 +2,37 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-import BackGroundRemove as br
+import .Utils.DetectEmotion as de
+import .Utils.CompareCelebrity as cc
 
 
-
-brColor = (255, 0, 255)
-
-cpSize = (320, 320)
-cpSize_3 = (320, 320, 3) 
+roih, roiw = 360, 360
 
 cap = cv2.VideoCapture(0)
 
 # Main
 while True:
+    # 버퍼 대신 웹캠으로 테스팅
     ret, frame = cap.read()
     if not ret:
         break
-
-    frame = cv2.resize(frame, cpSize)
-    output_image = br.BackGroundRemove(frame, brColor)
     
+    # cv2.imshow('test', frame)
+
+    # 콜오면
+    # fh, fw, fc = frame.shape
+    # rx = (fw - roiw) / 2 
+    # ry = (fh - roih) / 2
+    # roi = frame[ry:ry+fw, rx:rx+fh]
+    # cc.CompareCelebrity(roi)
+
+    output_image = de.DetectEmotion(frame)
+
+    output_image = np.array(output_image, dtype=np.uint8)
     cv2.imshow('Image Binary Mask Crop Test', output_image)
+
+    # 버퍼 전송
+    # return output_image
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
