@@ -14,6 +14,7 @@ def CompareCelebrity(image):
     bstAcc = 0.0
     bstImg = None
 
+    cv2.imshow(image)
     img = rb.BackGroundRemove(image)
     img = cv2.resize(img, cpSize)
 
@@ -29,4 +30,4 @@ def CompareCelebrity(image):
             bstImg = cbImage
 
     # bstAcc 0.0 ~ 1.0
-    return bstAcc, bstImg, ""
+    return bstAcc, bstImg, "asdf"

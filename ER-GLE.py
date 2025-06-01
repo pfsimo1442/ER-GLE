@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import mediapipe as mp
 
-import .DetectEmotion as de
-import .CompareCelebrity as cc
+import DetectEmotion as de
+import CompareCelebrity as cc
 
 
 roih, roiw = 360, 360
